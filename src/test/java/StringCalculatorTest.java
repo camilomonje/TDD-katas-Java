@@ -20,7 +20,7 @@ public class StringCalculatorTest {
     public void twoNumbersCommaDelimitedReturnsTheSumTest() throws Exception {
         assertThat(stringCalculatorInstance.add("0,2"), is(2));
         assertThat(stringCalculatorInstance.add("1,1"), is(2));
-        assertThat(stringCalculatorInstance.add("1,2"), is(3));
+        assertThat(stringCalculatorInstance.add("2,2"), is(4));
     }
     // Two numbers, newline delimited, returns the sum
     @Test
@@ -54,4 +54,23 @@ public class StringCalculatorTest {
     public void singleCharDelimiterTest() throws Exception {
         assertThat(stringCalculatorInstance.add("#2#1000"), is(1002));
     }
+
+    // A multi-character delimiter can be defined on the first line
+    @Test
+    public void multiCharDelimiterTest() throws Exception {
+        assertThat(stringCalculatorInstance.add("[###]3###1000"), is(1003));
+    }
+
+    // multiple delimiters can be defined on the first line
+    @Test
+    public void multipleDelimiterTest() throws Exception {
+        assertThat(stringCalculatorInstance.add("[###][##][#]10###100##2"), is(112));
+        assertThat(stringCalculatorInstance.add("[!!!][###][##][!]2!!!1000###5##10!5"), is(1022));
+    }
+
+
+
+
+
+
 }
